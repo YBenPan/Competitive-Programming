@@ -11,13 +11,7 @@ class Stack {
 
     public: 
 
-        Stack() {
-            arr = new T[SIZE];
-            this->size = SIZE;
-            this->top = -1;
-            cout << "Stack created!" << endl;
-        }
-        Stack(int size) {
+        Stack(int size = SIZE) {
             arr = new T[size];
             this->size = size;
             this->top = -1;
