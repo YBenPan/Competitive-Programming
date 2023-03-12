@@ -1,22 +1,24 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
 #define SIZE 10
 
+template <class T>
 class Stack {
-    int *arr;
-    int size;
+    T *arr;
+    size_t size;
     int top;
 
     public: 
 
         Stack() {
-            arr = new int[SIZE];
+            arr = new T[SIZE];
             this->size = SIZE;
             this->top = -1;
             cout << "Stack created!" << endl;
         }
         Stack(int size) {
-            arr = new int[size];
+            arr = new T[size];
             this->size = size;
             this->top = -1;
             cout << "Stack created!" << endl;
@@ -26,11 +28,11 @@ class Stack {
             cout << "Stack deleted!" << endl;
         }
 
-        int getTop() {
+        T getTop() {
             return arr[top];
         }
 
-        int getSize() {
+        size_t getSize() {
             return top + 1;
         }
 
@@ -42,7 +44,7 @@ class Stack {
             return top == size - 1;
         }
 
-        void push(int x) {
+        void push(T x) {
             if (isFull()) {
                 cout << "Error: Stack is full!" << endl;
                 return;
@@ -61,18 +63,25 @@ class Stack {
 };
 
 int main() {
-    Stack st(5);
+    Stack<int> st(5);
     st.push(1);
     st.push(3);
     st.push(5);
     st.push(7);
     st.push(9);
     cout << st.getSize() << " " << st.getTop() << endl;
-    st.push(50);
+    st.push(50); // Returns stack is full error
     st.pop();
     cout << st.getSize() << " " << st.getTop() << endl;
     for (int i = 0; i < 4; i++) st.pop();
     cout << st.isEmpty() << endl;
-    st.pop();
+    st.pop(); // Returns stack is empty error
+
+    Stack<string> str_st(5);
+    str_st.push("Alpha");
+    str_st.push("Bravo");
+    str_st.push("Charlie");
+    str_st.push("Delta");
+    cout << str_st.getSize() << " " << str_st.getTop() << endl;
     return 0;
 }
